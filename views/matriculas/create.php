@@ -1,7 +1,7 @@
 <?php
 require '../../config/db.php';
 session_start();
-
+$conn = Database::conectar();
 $alunos = $conn->query("SELECT id, nome FROM alunos ORDER BY nome")->fetchAll();
 $planos = $conn->query("SELECT id, nome, duracao_dias FROM planos ORDER BY nome")->fetchAll();
 

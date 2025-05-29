@@ -1,7 +1,7 @@
 <?php
 require '../../config/db.php';
 session_start();
-
+$conn = Database::conectar();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt = $conn->prepare("INSERT INTO alunos (nome, cpf, data_nascimento, telefone, endereco) VALUES (?, ?, ?, ?, ?)");
     $stmt->execute([

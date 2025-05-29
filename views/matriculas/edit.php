@@ -1,7 +1,7 @@
 <?php
 require '../../config/db.php';
 session_start();
-
+$conn = Database::conectar();
 $id = $_GET['id'];
 
 $matricula = $conn->prepare("SELECT * FROM matriculas WHERE id = ?");

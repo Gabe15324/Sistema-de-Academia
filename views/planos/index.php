@@ -1,7 +1,7 @@
 <?php
 require '../../config/db.php';
 session_start();
-
+$conn = Database::conectar();
 $stmt = $conn->query("SELECT * FROM planos ORDER BY nome");
 $planos = $stmt->fetchAll();
 ?>
@@ -16,7 +16,7 @@ $planos = $stmt->fetchAll();
 <div class="container mt-4">
     <h2>Planos da Academia</h2>
     <a href="create.php" class="btn btn-success mb-3">Novo Plano</a>
-    <a href="../dashboard.php" class="btn btn-secondary mb-3 float-right">Voltar</a>
+    <a href="../../dashboard.php" class="btn btn-secondary mb-3 float-right">Voltar</a>
 
     <table class="table table-bordered">
         <thead>

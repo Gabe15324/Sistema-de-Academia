@@ -1,7 +1,7 @@
 <?php
 require '../../config/db.php';
 session_start();
-
+$conn = Database::conectar();
 $sql = "SELECT m.*, a.nome AS aluno, p.nome AS plano 
         FROM matriculas m
         JOIN alunos a ON a.id = m.aluno_id
@@ -22,7 +22,7 @@ $matriculas = $stmt->fetchAll();
 <div class="container mt-4">
     <h2>Matrículas</h2>
     <a href="create.php" class="btn btn-success mb-3">Nova Matrícula</a>
-    <a href="../dashboard.php" class="btn btn-secondary mb-3 float-right">Voltar</a>
+    <a href="../../dashboard.php" class="btn btn-secondary mb-3 float-right">Voltar</a>
 
     <table class="table table-bordered">
         <thead>

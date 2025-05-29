@@ -4,11 +4,14 @@ if ($_SESSION['usuario_tipo'] !== 'admin') {
     header("Location: ../dashboard.php");
     exit;
 }
+
 require '../../config/db.php';
+$conn = Database::conectar();
 
 $stmt = $conn->query("SELECT * FROM usuarios ORDER BY nome");
 $usuarios = $stmt->fetchAll();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -21,7 +24,7 @@ $usuarios = $stmt->fetchAll();
 <div class="container mt-4">
     <h2>Gerenciar Usuários</h2>
     <a href="create.php" class="btn btn-primary mb-3">Novo Usuário</a>
-    <a href="../dashboard.php" class="btn btn-secondary mb-3 float-right">Voltar</a>
+    <a href="../../dashboard.php" class="btn btn-secondary mb-3 float-right">Voltar</a>
 
     <table class="table table-bordered">
         <thead>

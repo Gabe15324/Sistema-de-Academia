@@ -24,6 +24,7 @@ $tipo = $_SESSION['usuario_tipo'];
         <a href="views/usuarios/index.php" class="btn btn-secondary">Gerenciar Usuários</a>
         <a href="views/alunos/index.php" class="btn btn-secondary">Gerenciar Alunos</a>
         <a href="views/planos/index.php" class="btn btn-secondary">Gerenciar Planos</a>
+        <a href="views/matriculas/index.php" class="btn btn-secondary">Gerenciar Matriculas</a>
     <?php endif; ?>
 
     <a href="logout.php" class="btn btn-danger float-right">Sair</a>

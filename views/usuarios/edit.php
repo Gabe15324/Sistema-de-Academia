@@ -1,6 +1,7 @@
 <?php
 require '../../config/db.php';
 session_start();
+$conn = Database::conectar();
 
 $id = $_GET['id'];
 $stmt = $conn->prepare("SELECT * FROM usuarios WHERE id = ?");

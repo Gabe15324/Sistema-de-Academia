@@ -1,7 +1,7 @@
 <?php
 require '../../config/db.php';
 session_start();
-
+$conn = Database::conectar();
 $id = $_GET['id'];
 $stmt = $conn->prepare("DELETE FROM planos WHERE id = ?");
 $stmt->execute([$id]);

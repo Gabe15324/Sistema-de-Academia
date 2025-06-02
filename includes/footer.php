@@ -4,7 +4,14 @@
 <footer class="mt-5">
   <div class="container text-center">
     <p class="mb-1">&copy; <?= date('Y') ?> Academia. Todos os direitos reservados.</p>
-    <p>Desenvolvido por &bull; <a href="mailto:contato@academia.com.br">gabrielbrasilio999@gmail.com</a></p>
+    <b>Desenvolvido por &bull; 
+      <p>
+        <a href="">gabrielbrasilio999@gmail.com</a>
+        <a href="">luancurt@outlook.com</a>
+        <a href="">russobesc@gmail.com</a>
+        <a href="">Jean.almeida@cs.up.edu.br</a>
+      </p>
+    </b>
   </div>
 </footer>
 

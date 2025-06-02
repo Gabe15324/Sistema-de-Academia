@@ -18,15 +18,15 @@
                     <form action="processa_login.php" method="POST">
                         <div class="form-group">
                             <label>Email:</label>
-                            <input type="email" name="email" class="form-control" required>
+                            <input type="email" name="email" class="form-control" placeholder="Email" required>
                         </div>
                         <div class="form-group">
                             <label>Senha:</label>
-                            <input type="password" name="senha" class="form-control" required>
+                            <input type="password" name="senha" class="form-control" placeholder="Senha" required>
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Entrar</button>
                         <div class="text-center mt-3">
-                            <a href="cadastro.php">Não tem conta? Cadastre-se</a>
+                            <a href="cadastro.php">Cadastre-se</a>
                         </div>
                     </form>
                 </div>

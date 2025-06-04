@@ -75,4 +75,8 @@ include 'includes/header.php';
 
         </div>
     </div>
+<<<<<<< HEAD
 </section>
+=======
+</section>
+>>>>>>> 961ea868c5e8e59748e860a2f9cfb00e8bb1b41f

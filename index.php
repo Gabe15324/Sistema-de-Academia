@@ -9,9 +9,15 @@ $planos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 include 'includes/header.php';
 
 ?>
+<<<<<<< HEAD
 
 <!-- Boas-vindas -->
 <section class="jumbotron text-center bg-dark text-white">
+=======
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- Carrossel Fotos -->
+<section id="fotos" class="mt-4">
+>>>>>>> 961ea868c5e8e59748e860a2f9cfb00e8bb1b41f
   <div class="container">
     <h1 class="display-4">Bem-vindo à Academia Bomber Gym!</h1>
     <p class="lead">Transforme seu corpo e sua mente com nossos planos personalizados e equipe especializada.</p>
@@ -60,5 +66,8 @@ include 'includes/header.php';
     </div>
   </div>
 </section>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 961ea868c5e8e59748e860a2f9cfb00e8bb1b41f
 <?php include 'includes/footer.php'; ?>

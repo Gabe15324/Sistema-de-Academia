@@ -39,4 +39,8 @@ include 'includes/header.php';
   </div>
 </section>
 
+<<<<<<< HEAD
 <?php include 'includes/footer.php'; ?>
+=======
+<?php include 'includes/footer.php'; ?>
+>>>>>>> 961ea868c5e8e59748e860a2f9cfb00e8bb1b41f

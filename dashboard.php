@@ -24,10 +24,20 @@ $tipo = $_SESSION['usuario_tipo'];
         <a href="views/usuarios/index.php" class="btn btn-secondary">Gerenciar Usuários</a>
         <a href="views/alunos/index.php" class="btn btn-secondary">Gerenciar Alunos</a>
         <a href="views/planos/index.php" class="btn btn-secondary">Gerenciar Planos</a>
-        <a href="views/matriculas/index.php" class="btn btn-secondary">Gerenciar Matriculas</a>
+        <a href="views/matriculas/index.php" class="btn btn-secondary">Gerenciar Matrículas</a>
+
+    <?php elseif ($tipo === 'aluno'): ?>
+        <div class="card mt-4">
+            <div class="card-body">
+                <h5 class="card-title">Área do Aluno</h5>
+                <p>Aqui você pode consultar seu plano, vencimento da matrícula, e outros dados.</p>
+                <a href="views/alunos/perfil.php" class="btn btn-primary">Ver meu Perfil</a>
+                <a href="views/alunos/treinos.php" class="btn btn-info">Ver Treinos</a>
+            </div>
+        </div>
     <?php endif; ?>
 
-    <a href="logout.php" class="btn btn-danger float-right">Sair</a>
+    <a href="logout.php" class="btn btn-danger float-right mt-4">Sair</a>
 </div>
 </body>
 </html>

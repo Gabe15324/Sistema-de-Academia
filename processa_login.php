@@ -2,11 +2,11 @@
 session_start();
 require_once 'config/db.php';
 
-$email = $_POST['email'];
+$email = trim($_POST['email']);
 $senha = $_POST['senha'];
 
 try {
-    $pdo = Database::conectar(); 
+    $pdo = Database::conectar();
 
     $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = ?");
     $stmt->execute([$email]);
@@ -16,6 +16,8 @@ try {
         $_SESSION['usuario_id'] = $usuario['id'];
         $_SESSION['usuario_nome'] = $usuario['nome'];
         $_SESSION['usuario_tipo'] = $usuario['tipo'];
+
+        // Redireciona para a dashboard com base no tipo
         header("Location: dashboard.php");
         exit;
     } else {
@@ -24,5 +26,7 @@ try {
         exit;
     }
 } catch (PDOException $e) {
-    echo "Erro: " . $e->getMessage();
+    $_SESSION['erro_login'] = "Erro ao conectar ao banco de dados.";
+    header("Location: login.php");
+    exit;
 }

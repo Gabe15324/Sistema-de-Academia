@@ -1,6 +1,3 @@
-<?php
-// includes/header.php
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -11,13 +8,13 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     
-    <!-- Custom Styles -->
+    <!-- Estilos do header -->
     <style>
         html {
             scroll-behavior: smooth;
         }
         body {
-            padding-top: 70px; /* para navbar fixed */
+            padding-top: 70px;
         }
         .carousel-inner img {
             height: 400px;
@@ -34,11 +31,9 @@
     </style>
 </head>
 <body>
-
-<!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow">
   <div class="container">
-    <a class="navbar-brand font-weight-bold" href="#">Academia</a>
+    <a class="navbar-brand font-weight-bold" href="index.php">Bomber Gym</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMain" 
             aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -46,12 +41,11 @@
 
     <div class="collapse navbar-collapse" id="navbarMain">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item"><a class="nav-link" href="#fotos">Fotos</a></li>
-        <li class="nav-item"><a class="nav-link" href="#sobre">Sobre Nós</a></li>
-        <li class="nav-item"><a class="nav-link" href="#planos">Planos</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+        <li class="nav-item"><a class="nav-link" href="SobreNos.php">Sobre Nós</a></li>
+        <li class="nav-item"><a class="nav-link" href="Planos.php">Planos</a></li>
+        <li class="nav-item"><a class="nav-link" href="contatos.php">Contato</a></li>
         <li class="nav-item ml-lg-3">
-          <a href="views/alunos/painel.php" class="btn btn-warning font-weight-bold">Cadastre-se</a>
+          <a href="login.php" class="btn btn-danger font-weight-bold">Logar</a>
         </li>
       </ul>
     </div>

@@ -9,7 +9,7 @@ $stmt->execute([$id]);
 $usuario = $stmt->fetch();
 
 if (!$usuario) {
-    echo "Usuário não encontrado.";
+    echo "<div class='alert alert-danger text-center mt-5'>Usuário não encontrado.</div>";
     exit;
 }
 
@@ -29,32 +29,56 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <title>Editar Usuário</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta charset="UTF-8" />
+    <title>Editar Usuário - Academia</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
 </head>
-<body>
-<div class="container mt-4">
-    <h2>Editar Usuário</h2>
-    <form method="POST">
-        <div class="form-group">
-            <label>Nome:</label>
-            <input type="text" name="nome" class="form-control" value="<?= $usuario['nome'] ?>" required>
+<body class="bg-light">
+    <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+        <div class="card shadow-sm w-100" style="max-width: 480px;">
+            <div class="card-header bg-info text-white text-center">
+                <h3 class="mb-0">Editar Usuário</h3>
+            </div>
+            <div class="card-body">
+                <form method="POST" novalidate>
+                    <div class="form-group">
+                        <label for="nome">Nome</label>
+                        <input 
+                            type="text" 
+                            id="nome" 
+                            name="nome" 
+                            class="form-control" 
+                            placeholder="Nome completo" 
+                            value="<?= htmlspecialchars($usuario['nome']) ?>" 
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            class="form-control" 
+                            placeholder="exemplo@dominio.com" 
+                            value="<?= htmlspecialchars($usuario['email']) ?>" 
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="tipo">Tipo de Usuário</label>
+                        <select id="tipo" name="tipo" class="form-control" required>
+                            <option value="admin" <?= $usuario['tipo'] === 'admin' ? 'selected' : '' ?>>Administrador</option>
+                            <option value="aluno" <?= $usuario['tipo'] === 'aluno' ? 'selected' : '' ?>>Aluno</option>
+                        </select>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <a href="index.php" class="btn btn-outline-secondary px-4">Cancelar</a>
+                        <button type="submit" class="btn btn-info px-4">Atualizar</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="form-group">
-            <label>Email:</label>
-            <input type="email" name="email" class="form-control" value="<?= $usuario['email'] ?>" required>
-        </div>
-        <div class="form-group">
-            <label>Tipo:</label>
-            <select name="tipo" class="form-control">
-                <option value="admin" <?= $usuario['tipo'] == 'admin' ? 'selected' : '' ?>>Administrador</option>
-                <option value="funcionario" <?= $usuario['tipo'] == 'funcionario' ? 'selected' : '' ?>>Funcionário</option>
-            </select>
-        </div>
-        <button type="submit" class="btn btn-primary">Atualizar</button>
-        <a href="index.php" class="btn btn-secondary">Cancelar</a>
-    </form>
-</div>
+    </div>
 </body>
 </html>

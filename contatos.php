@@ -44,13 +44,13 @@ include 'includes/header.php';
             'insta_link' => 'https://instagram.com/carlosfit'
           ],
           [
-            'nome' => 'Juliana Martins',
-            'email' => 'juliana.martins@email.com',
+            'nome' => 'Jean dias',
+            'email' => 'jeandias0803@gmail.com',
             'telefone' => '(41) 90000-1111',
             'endereco' => 'R. XV de Novembro, 321<br>Curitiba - PR',
             'horario' => 'Seg a Sex - 10h às 19h',
-            'instagram' => '@julianam',
-            'insta_link' => 'https://instagram.com/julianam'
+            'instagram' => '@JeanDias',
+            'insta_link' => 'https://instagram.com/JeanDias'
           ]
         ];
 

@@ -1,21 +1,32 @@
 <?php include 'includes/header.php'; ?>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-<section id="sobre" class="bg-light text-center mt-5 shadow-sm">
-    <div class="container">
-        <div class="card">
-            <div class="card-body">
-                <h2 class="mb-3 font-weight-bold">Sobre Nós</h2>
-                <p class="lead mx-auto" style="max-width: 700px;">
-                Somos uma academia comprometida em transformar vidas e seu corpo com planos flexíveis, infraestrutura moderna e avançada, com uma equipe dedicada ao seu sucesso.
-                </p>
-            </div>
+<section id="sobre" class="py-5 bg-dark text-light">
+  <div class="container">
+    <div class="card bg-secondary text-light border-0 shadow-lg">
+      <div class="card-body text-center">
+        <h2 class="display-4 font-weight-bold text-danger mb-4">Sobre a Bomber Gym</h2>
+        
+        <p class="lead mx-auto text-light">
+          Na <strong>Bomber Gym</strong>, acreditamos que o verdadeiro poder vai além dos músculos: ele está na mente, na disciplina e na jornada. Fundada com o propósito de transformar vidas, somos mais do que uma academia — somos um estilo de vida.
+        </p>
+
+        <hr class="my-4 border-danger">
+
+        <p class="mx-auto">
+          Nossa estrutura moderna conta com equipamentos de última geração, salas climatizadas, espaço funcional, lutas, musculação e programas personalizados. Contamos com uma equipe de profissionais altamente qualificados, apaixonados por saúde, performance e bem-estar.
+        </p>
+
+        <p class="mx-auto mt-3 text-light">
+          Aqui na Bomber Gym, o seu objetivo é o nosso compromisso: seja ele ganhar massa muscular, perder peso, melhorar o condicionamento ou apenas ter uma vida mais saudável.
+        </p>
+
+        <div class="mt-4">
+          <a href="Planos.php" class="btn btn-danger btn-lg px-5">Descubra seu plano ideal</a>
         </div>
+      </div>
     </div>
+  </div>
 </section>
 
-<<<<<<< HEAD
 <?php include 'includes/footer.php'; ?>
-=======
-<?php include 'includes/footer.php'; ?>
->>>>>>> 961ea868c5e8e59748e860a2f9cfb00e8bb1b41f

@@ -2,17 +2,27 @@
 session_start();
 require_once 'config/db.php';
 
-// Recebe os dados do formulário
-$nome = trim($_POST['nome']);
-$email = trim($_POST['email']);
-$senha = $_POST['senha'];
-$isAdminChecked = isset($_POST['is_admin']);
-$senhaAdminInformada = $_POST['senha_admin'] ?? '';
+$nome = trim($_POST['nome'] ?? '');
+$email = trim($_POST['email'] ?? '');
+$senha = $_POST['senha'] ?? '';
+$confirmar_senha = $_POST['confirmar_senha'] ?? '';
+$telefone = trim($_POST['telefone'] ?? '');
+$data_nascimento = $_POST['data_nascimento'] ?? null;
+$cpf = trim($_POST['cpf'] ?? '');
+$endereco = trim($_POST['endereco'] ?? '');
+$isAdmin = isset($_POST['is_admin']);
+$senhaAdmin = $_POST['senha_admin'] ?? '';
+
+if ($senha !== $confirmar_senha) {
+    $_SESSION['erro_cadastro'] = "As senhas não coincidem.";
+    header("Location: cadastro.php");
+    exit;
+}
 
 try {
     $pdo = Database::conectar();
 
-    // Verifica se o email já está cadastrado
+    // Verifica duplicidade de email
     $stmt = $pdo->prepare("SELECT id FROM usuarios WHERE email = ?");
     $stmt->execute([$email]);
     if ($stmt->fetch()) {
@@ -21,35 +31,34 @@ try {
         exit;
     }
 
-    // Define o tipo de usuário
-    $tipo = 'aluno'; // <- padrão: aluno
-
-    // Verifica se o checkbox de admin foi marcado
-    if ($isAdminChecked) {
-        $senhaAdminCorreta = 'admin10032005';
-
-        if ($senhaAdminInformada === $senhaAdminCorreta) {
-            $tipo = 'admin';
-        } else {
+    $tipo = 'aluno';
+    if ($isAdmin) {
+        $senhaCorretaAdmin = 'admin10032005';
+        if ($senhaAdmin !== $senhaCorretaAdmin) {
             $_SESSION['erro_cadastro'] = "Senha de administrador incorreta.";
             header("Location: cadastro.php");
             exit;
         }
+        $tipo = 'admin';
     }
 
-    // Criptografa a senha do usuário
-    $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
+    $hashSenha = password_hash($senha, PASSWORD_DEFAULT);
 
-    // Insere o novo usuário no banco de dados
-    $stmt = $pdo->prepare("INSERT INTO usuarios (nome, email, senha, tipo) VALUES (?, ?, ?, ?)");
-    $stmt->execute([$nome, $email, $senhaHash, $tipo]);
+    $genero = $_POST['genero'] ?? null;
 
-    $_SESSION['sucesso_cadastro'] = "Cadastro realizado com sucesso. Faça login.";
+    $ativo = 1; 
+
+    $stmt = $pdo->prepare("INSERT INTO usuarios (nome, email, senha, cpf, data_nascimento, telefone, endereco, tipo, genero, ativo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->execute([$nome, $email, $hashSenha, $cpf, $data_nascimento, $telefone, $endereco, $tipo, $genero, $ativo]);
+
+
+
+    $_SESSION['sucesso_cadastro'] = "Cadastro realizado com sucesso!";
     header("Location: login.php");
     exit;
 
 } catch (PDOException $e) {
-    $_SESSION['erro_cadastro'] = "Erro no cadastro: " . $e->getMessage();
+    $_SESSION['erro_cadastro'] = "Erro ao salvar os dados: " . $e->getMessage();
     header("Location: cadastro.php");
     exit;
 }

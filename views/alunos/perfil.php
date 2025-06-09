@@ -2,76 +2,106 @@
 session_start();
 require_once '../../config/db.php';
 
-if ($_SESSION['usuario_tipo'] !== 'aluno') {
-    header("Location: ../../dashboard.php");
+// Verifica se está logado como aluno
+if (!isset($_SESSION['usuario_tipo']) || $_SESSION['usuario_tipo'] !== 'aluno') {
+    header("Location: ../../login.php");
     exit;
 }
 
-$usuario_id = $_SESSION['usuario_id'];
+$usuario_id = $_SESSION['usuario_id'] ?? null;
+
+if (!$usuario_id) {
+    die("Erro: Sessão inválida.");
+}
 
 try {
     $pdo = Database::conectar();
+    $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE id = ?");
+    $stmt->execute([$usuario_id]);
+    $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Busca os dados do aluno (opcional, pois estão na sessão)
-    $stmtAluno = $pdo->prepare("SELECT nome, email FROM alunos WHERE id = ?");
-    $stmtAluno->execute([$usuario_id]);
-    $aluno = $stmtAluno->fetch(PDO::FETCH_ASSOC);
-
-    // Busca a matrícula ativa mais recente
-    $stmtMatricula = $pdo->prepare("
-        SELECT 
-            m.data_matricula, 
-            m.data_inicio, 
-            m.data_fim, 
-            p.nome AS plano_nome, 
-            p.valor, 
-            p.duracao_dias
-        FROM matriculas m
-        JOIN planos p ON m.plano_id = p.id
-        WHERE m.aluno_id = ?
-          AND m.ativo = 1
-          AND CURDATE() BETWEEN m.data_inicio AND m.data_fim
-        ORDER BY m.data_matricula DESC
-        LIMIT 1
-    ");
-    $stmtMatricula->execute([$usuario_id]);
-    $matricula = $stmtMatricula->fetch(PDO::FETCH_ASSOC);
-
+    if (!$usuario) {
+        die("Usuário não encontrado.");
+    }
 } catch (PDOException $e) {
-    die("Erro: " . $e->getMessage());
+    die("Erro no banco de dados: " . $e->getMessage());
 }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Meu Perfil - Aluno</title>
+    <title>Meu Perfil</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 <div class="container mt-5">
-    <h3>Meu Perfil</h3>
-    <p><strong>Nome:</strong> <?= htmlspecialchars($aluno['nome'] ?? $_SESSION['usuario_nome']) ?></p>
-    <p><strong>Email:</strong> <?= htmlspecialchars($aluno['email'] ?? $_SESSION['usuario_email'] ?? '---') ?></p>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Meu Perfil</h4>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="atualizar_perfil.php">
+                        <input type="hidden" name="id" value="<?= $usuario['id'] ?>">
 
-    <?php if ($matricula): 
-        $dataMatricula = new DateTime($matricula['data_matricula']);
-        $dataVencimento = (clone $dataMatricula)->modify("+{$matricula['duracao_dias']} days");
-    ?>
-        <div class="card mt-3">
-            <div class="card-body">
-                <h5 class="card-title">Plano Ativo</h5>
-                <p><strong>Plano:</strong> <?= htmlspecialchars($matricula['plano_nome']) ?></p>
-                <p><strong>Valor:</strong> R$ <?= number_format($matricula['valor'], 2, ',', '.') ?></p>
-                <p><strong>Data de Matrícula:</strong> <?= $dataMatricula->format('d/m/Y') ?></p>
-                <p><strong>Vencimento:</strong> <?= $dataVencimento->format('d/m/Y') ?></p>
+                        <div class="form-group">
+                            <label>Nome</label>
+                            <input type="text" name="nome" class="form-control" value="<?= htmlspecialchars($usuario['nome']) ?>" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" name="email" class="form-control" value="<?= htmlspecialchars($usuario['email']) ?>" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Telefone</label>
+                            <input type="text" name="telefone" class="form-control" value="<?= $usuario['telefone'] ?>">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Data de Nascimento</label>
+                            <input type="date" name="data_nascimento" class="form-control" value="<?= $usuario['data_nascimento'] ?>">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Gênero</label>
+                            <select name="genero" class="form-control">
+                                <option value="">Selecione</option>
+                                <option value="masculino" <?= $usuario['genero'] === 'masculino' ? 'selected' : '' ?>>Masculino</option>
+                                <option value="feminino" <?= $usuario['genero'] === 'feminino' ? 'selected' : '' ?>>Feminino</option>
+                                <option value="outro" <?= $usuario['genero'] === 'outro' ? 'selected' : '' ?>>Outro</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>CPF</label>
+                            <input type="text" name="cpf" class="form-control" value="<?= $usuario['cpf'] ?>">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Endereço</label>
+                            <input type="text" name="endereco" class="form-control" value="<?= $usuario['endereco'] ?>">
+                        </div>
+
+                        <div class="form-group d-flex justify-content-between">
+                            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                            <a href="../../dashboard.php" class="btn btn-secondary">Voltar</a>
+                        </div>
+                    </form>
+
+                    <hr>
+
+                    <form method="POST" action="excluir_perfil.php" onsubmit="return confirm('Tem certeza que deseja excluir sua conta?');">
+                        <input type="hidden" name="id" value="<?= $usuario['id'] ?>">
+                        <button type="submit" class="btn btn-danger btn-block">Excluir Conta</button>
+                    </form>
+                </div>
             </div>
         </div>
-    <?php else: ?>
-        <div class="alert alert-warning mt-3">Você ainda não possui matrícula ativa.</div>
-    <?php endif; ?>
-
-    <a href="../../dashboard.php" class="btn btn-secondary mt-4">Voltar</a>
+    </div>
 </div>
 </body>
 </html>

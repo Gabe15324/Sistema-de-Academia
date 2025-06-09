@@ -2,48 +2,49 @@
 session_start();
 require_once '../../config/db.php';
 
-if ($_SESSION['usuario_tipo'] !== 'aluno') {
-    header("Location: ../../dashboard.php");
+if ($_SESSION['usuario_tipo'] !== 'admin') {
+    header("Location: ../../login.php");
     exit;
 }
 
-$usuario_id = $_SESSION['usuario_id'];
-
-try {
-    $pdo = Database::conectar();
-    $stmt = $pdo->prepare("SELECT nome_treino, descricao, data_criacao FROM treinos WHERE aluno_id = ? ORDER BY data_criacao DESC");
-    $stmt->execute([$usuario_id]);
-    $treinos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-    die("Erro: " . $e->getMessage());
-}
+$pdo = Database::conectar();
+$treinos = $pdo->query("SELECT t.*, u.nome AS aluno_nome FROM treinos t JOIN usuarios u ON t.usuario_id = u.id")->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Meus Treinos</title>
+    <title>Lista de Treinos</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 <div class="container mt-5">
-    <h3>Meus Treinos</h3>
-
-    <?php if ($treinos): ?>
-        <ul class="list-group">
+    <h3>Lista de Treinos</h3>
+    <table class="table table-bordered mt-4">
+        <thead class="thead-dark">
+            <tr>
+                <th>Aluno</th>
+                <th>Nome do Treino</th>
+                <th>Data de Início</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
             <?php foreach ($treinos as $treino): ?>
-                <li class="list-group-item">
-                    <h5><?= htmlspecialchars($treino['nome_treino']) ?></h5>
-                    <p><?= nl2br(htmlspecialchars($treino['descricao'])) ?></p>
-                    <small class="text-muted">Criado em: <?= date('d/m/Y', strtotime($treino['data_criacao'])) ?></small>
-                </li>
+                <tr>
+                    <td><?= $treino['aluno_nome'] ?></td>
+                    <td><?= $treino['nome'] ?></td>
+                    <td><?= date('d/m/Y', strtotime($treino['data_inicio'])) ?></td>
+                    <td>
+                        <a href="editar_treinos.php?id=<?= $treino['id'] ?>" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="excluir_treinos.php?id=<?= $treino['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir este treino?')">Excluir</a>
+                    </td>
+                </tr>
             <?php endforeach; ?>
-        </ul>
-    <?php else: ?>
-        <div class="alert alert-info">Nenhum treino cadastrado.</div>
-    <?php endif; ?>
-
-    <a href="../../dashboard.php" class="btn btn-secondary mt-4">Voltar</a>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>
+
+

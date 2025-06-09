@@ -35,13 +35,13 @@ include 'includes/header.php';
             'insta_link' => 'https://instagram.com/diego_aws'
           ],
           [
-            'nome' => 'Carlos Souza',
-            'email' => 'carlos.souza@email.com',
-            'telefone' => '(41) 91234-5678',
-            'endereco' => 'Rua das Flores, 789<br>Curitiba - PR',
+            'nome' => 'Luan Curt',
+            'email' => 'curt.luan@gmail.com',
+            'telefone' => '(41) 992630926',
+            'endereco' => 'Marechal Deodoro, 666<br>Curitiba - PR',
             'horario' => 'Seg a Sex - 07h às 16h',
-            'instagram' => '@carlosfit',
-            'insta_link' => 'https://instagram.com/carlosfit'
+            'instagram' => '@luancurt',
+            'insta_link' => 'https://instagram.com/luancurt'
           ],
           [
             'nome' => 'Jean dias',

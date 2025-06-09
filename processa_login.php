@@ -2,8 +2,8 @@
 session_start();
 require_once 'config/db.php';
 
-$email = trim($_POST['email']);
-$senha = $_POST['senha'];
+$email = trim($_POST['email'] ?? '');
+$senha = $_POST['senha'] ?? '';
 
 try {
     $pdo = Database::conectar();
@@ -17,7 +17,6 @@ try {
         $_SESSION['usuario_nome'] = $usuario['nome'];
         $_SESSION['usuario_tipo'] = $usuario['tipo'];
 
-        // Redireciona para a dashboard com base no tipo
         header("Location: dashboard.php");
         exit;
     } else {

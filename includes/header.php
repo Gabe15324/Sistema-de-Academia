@@ -45,11 +45,7 @@
         <li class="nav-item"><a class="nav-link" href="Planos.php">Planos</a></li>
         <li class="nav-item"><a class="nav-link" href="contatos.php">Contato</a></li>
         <li class="nav-item ml-lg-3">
-<<<<<<< HEAD
           <a href="login.php" class="btn btn-danger font-weight-bold">Logar</a>
-=======
-          <a href="login.php" class="btn btn-danger font-weight-bold">Cadastre-se</a>
->>>>>>> 961ea868c5e8e59748e860a2f9cfb00e8bb1b41f
         </li>
       </ul>
     </div>

@@ -1,12 +1,14 @@
-<footer class="mt-5">
+<footer class="bg-dark text-light py-4 border-top">
   <div class="container text-center">
-    <p class="mb-1">&copy; <?= date('Y') ?> Academia. Todos os direitos reservados.</p>
-    <p><strong>Desenvolvido por &bull; 
-      <a href="mailto:gabrielbrasilio999@gmail.com">gabrielbrasilio999@gmail.com</a> &bull;
-      <a href="mailto:luancurt@outlook.com">luancurt@outlook.com</a> &bull;
-      <a href="mailto:russobesc@gmail.com">russobesc@gmail.com</a> &bull;
-      <a href="mailto:Jean.almeida@cs.up.edu.br">Jean.almeida@cs.up.edu.br</a>
-    </strong></p>
+    <p class="mb-2">&copy; <?= date('Y') ?> <strong>Bomber Gym</strong> — Todos os direitos reservados.</p>
+    <p class="mb-0 font-weight-bold">
+      Desenvolvido por:
+      <br class="d-block d-sm-none">
+      <a href="mailto:gabrielbrasilio999@gmail.com" class="text-warning">Gabriel Brasílio</a> &bull;
+      <a href="mailto:luancurt@outlook.com" class="text-warning">Luan Curt</a> &bull;
+      <a href="mailto:russobesc@gmail.com" class="text-warning">Russo Besc</a> &bull;
+      <a href="mailto:Jean.almeida@cs.up.edu.br" class="text-warning">Jean Almeida</a>
+    </p>
   </div>
 </footer>
 

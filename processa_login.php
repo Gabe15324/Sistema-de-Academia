@@ -17,6 +17,8 @@ try {
         $_SESSION['usuario_nome'] = $usuario['nome'];
         $_SESSION['usuario_tipo'] = $usuario['tipo'];
 
+        $_SESSION['mensagem_boas_vindas'] = "Bem-vindo(a), {$usuario['nome']}!";
+
         header("Location: dashboard.php");
         exit;
     } else {

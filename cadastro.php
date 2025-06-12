@@ -1,11 +1,13 @@
 <?php 
 session_start(); 
 include 'includes/header.php'; 
+
+$plano_id = $_GET['plano_id'] ?? null; // Pega o plano vindo pela URL
 ?>
 
 <body class="bg-dark text-white">
 
-<div class="container py-5">
+<div class="container py-5 mt-5">
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
       <div class="card shadow border-0" style="background-color: #2f2f2f;">
@@ -25,6 +27,7 @@ include 'includes/header.php';
           <form action="processa_cadastro.php" method="POST">
 
             <div class="form-group">
+              <input type="hidden" name="plano_id" value="<?= $plano_id ?>">
               <label for="nome">Nome completo</label>
               <input type="text" class="form-control bg-dark text-white border-secondary" id="nome" name="nome" required placeholder="Digite seu nome completo">
             </div>

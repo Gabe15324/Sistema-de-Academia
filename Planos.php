@@ -30,9 +30,9 @@ include 'includes/header.php';
                 <li><strong>💰 Valor:</strong> R$ <?= number_format($plano['valor'], 2, ',', '.') ?></li>
                 <li><strong>⏱ Duração:</strong> <?= (int)$plano['duracao_dias'] ?> dias</li>
               </ul>
-              <a href="cadastro.php?plano_id=<?= $plano['id'] ?>" class="btn btn-outline-danger btn-block font-weight-bold">
-                Escolher este Plano
-              </a>
+                <a href="cadastro.php?plano_id=<?= $plano['id'] ?>" class="btn btn-outline-danger btn-block font-weight-bold">
+                  Escolher este Plano
+                </a>
             </div>
           </div>
         </div>

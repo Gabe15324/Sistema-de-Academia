@@ -7,6 +7,10 @@ if (!isset($_SESSION['usuario_id'])) {
 
 $nome = $_SESSION['usuario_nome'];
 $tipo = $_SESSION['usuario_tipo'];
+
+$mensagem_boas_vindas = $_SESSION['mensagem_boas_vindas'] ?? '';
+unset($_SESSION['mensagem_boas_vindas']); 
+
 ?>
 
 <!DOCTYPE html>
@@ -39,6 +43,11 @@ $tipo = $_SESSION['usuario_tipo'];
             <div class="text-center mb-5">
                 <h2 class="text-danger font-weight-bold">🏋️ Academia Fit - Dashboard</h2>
                 <p>Bem-vindo, <strong><?= htmlspecialchars($nome); ?></strong>! | Tipo de acesso: <span class="badge badge-secondary"><?= $tipo; ?></span></p>
+                <?php if (!empty($mensagem_boas_vindas)): ?>
+                    <div class="alert alert-success text-center mt-3">
+                        <?= $mensagem_boas_vindas; ?>
+                    </div>
+                <?php endif; ?>
             </div>
 
             <?php if ($tipo === 'admin'): ?>

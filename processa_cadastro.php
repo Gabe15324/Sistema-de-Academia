@@ -2,6 +2,8 @@
 session_start();
 require_once 'config/db.php';
 
+$plano_id = $_POST['plano_id'] ?? null;
+
 $nome = trim($_POST['nome'] ?? '');
 $email = trim($_POST['email'] ?? '');
 $senha = $_POST['senha'] ?? '';
@@ -48,8 +50,9 @@ try {
 
     $ativo = 1; 
 
-    $stmt = $pdo->prepare("INSERT INTO usuarios (nome, email, senha, cpf, data_nascimento, telefone, endereco, tipo, genero, ativo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->execute([$nome, $email, $hashSenha, $cpf, $data_nascimento, $telefone, $endereco, $tipo, $genero, $ativo]);
+    $stmt = $pdo->prepare("INSERT INTO usuarios (nome, email, senha, cpf, data_nascimento, telefone, endereco, tipo, genero, ativo, plano_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->execute([$nome, $email, $hashSenha, $cpf, $data_nascimento, $telefone, $endereco, $tipo, $genero, $ativo, $plano_id]);
+
 
 
 

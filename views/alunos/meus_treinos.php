@@ -7,6 +7,7 @@ if (!isset($_SESSION['usuario_tipo']) || $_SESSION['usuario_tipo'] !== 'aluno') 
     exit;
 }
 
+
 $usuario_id = $_SESSION['usuario_id'];
 $pdo = Database::conectar();
 $stmt = $pdo->prepare("SELECT * FROM treinos WHERE usuario_id = ? ORDER BY data_inicio DESC");
@@ -22,14 +23,15 @@ $treinos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body class="container mt-5">
-    <h3>Meus Treinos</h3>
+    <h3 class="text-center text-primary mb-4">📋 Meus Treinos</h3>
+
     <?php if (count($treinos) === 0): ?>
-        <p>Nenhum treino atribuído ainda.</p>
+        <div class="alert alert-warning">Nenhum treino atribuído ainda.</div>
     <?php else: ?>
         <div class="list-group">
             <?php foreach ($treinos as $treino): ?>
                 <div class="list-group-item">
-                    <h5><?= htmlspecialchars($treino['nome']) ?></h5>
+                    <h5 class="font-weight-bold"><?= htmlspecialchars($treino['nome']) ?></h5>
                     <p><?= nl2br(htmlspecialchars($treino['descricao'])) ?></p>
                     <p><strong>Início:</strong> <?= date('d/m/Y', strtotime($treino['data_inicio'])) ?></p>
                     <p><strong>Fim:</strong> <?= date('d/m/Y', strtotime($treino['data_fim'])) ?></p>
@@ -38,6 +40,8 @@ $treinos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     <?php endif; ?>
 
-    <a href="../../dashboard.php" class="btn btn-secondary mt-3">Voltar</a>
+    <div class="text-center mt-4">
+        <a href="../../dashboard.php" class="btn btn-outline-secondary">Voltar ao Dashboard</a>
+    </div>
 </body>
 </html>

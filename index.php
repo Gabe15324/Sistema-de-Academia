@@ -35,7 +35,6 @@ include 'includes/header.php';
 
 <main class="bg-dark text-light">
 
-  <!-- Hero com Call to Action -->
   <section class="d-flex align-items-center justify-content-center text-center vh-100" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('assets/hero.png') center/cover;">
     <div class="px-3">
       <h1 class="display-4 font-weight-bold">Bem-vindo à <span class="text-warning">Bomber Gym</span></h1>
@@ -45,7 +44,6 @@ include 'includes/header.php';
     </div>
   </section>
 
-  <!-- Carousel de Destaques -->
   <section id="destaques" class="bg-dark text-white py-5">
     <div class="container">
       <h2 class="text-center mb-4 font-weight-bold text-warning">O que oferecemos</h2>
@@ -69,9 +67,6 @@ include 'includes/header.php';
     </div>
   </section>
 
-
-
-    <!-- Benefícios -->
   <section class="bg-dark text-white py-5">
     <div class="container">
       <div class="row align-items-center">
@@ -90,7 +85,6 @@ include 'includes/header.php';
       </div>
     </div>
   </section>
-
 
   <section class="bg-secondary text-light py-5">
     <div class="container">
@@ -140,7 +134,7 @@ include 'includes/header.php';
   <section class="py-5 text-center bg-warning text-dark">
     <div class="container">
       <h2 class="mb-4 font-weight-bold">Pronto para mudar sua rotina?</h2>
-      <a href="cadastro.php" class="btn btn-dark btn-lg shadow">Faça sua matrícula agora</a>
+      <a href="Planos.php" class="btn btn-dark btn-lg shadow">Faça sua matrícula, e conheça os nossos planos</a>
     </div>
   </section>
 

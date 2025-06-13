@@ -20,7 +20,7 @@ try {
     $stmt = $pdo->prepare("DELETE FROM treinos WHERE id = ?");
     $stmt->execute([$treino_id]);
 
-    header("Location: listar_treinos.php");
+    header("Location: treinos.php");
     exit;
 } catch (PDOException $e) {
     die("Erro ao excluir treino: " . $e->getMessage());

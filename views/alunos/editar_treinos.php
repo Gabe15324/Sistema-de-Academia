@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $update = $pdo->prepare("UPDATE treinos SET nome = ?, descricao = ?, data_inicio = ? WHERE id = ?");
     $update->execute([$nome, $descricao, $data_inicio, $treino_id]);
 
-    header("Location: listar_treinos.php");
+    header("Location: treinos.php");
     exit;
 }
 ?>
@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <input type="date" class="form-control" id="data_inicio" name="data_inicio" value="<?= $treino['data_inicio'] ?>" required>
         </div>
         <button type="submit" class="btn btn-primary">Atualizar</button>
-        <a href="listar_treinos.php" class="btn btn-secondary">Cancelar</a>
+        <a href="treinos.php" class="btn btn-secondary">Cancelar</a>
     </form>
 </div>
 </body>

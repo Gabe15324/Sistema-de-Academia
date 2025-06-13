@@ -96,7 +96,7 @@ unset($_SESSION['mensagem_boas_vindas']);
                     <div class="card-body text-center">
                         <i class="fas fa-file-signature fa-2x text-danger mb-3"></i>
                         <h5 class="card-title">Listar Treinos</h5>
-                        <a href="views/alunos/listar_treinos.php" class="btn btn-outline-danger btn-sm">Gerenciar</a>
+                        <a href="views/alunos/treinos.php" class="btn btn-outline-danger btn-sm">Gerenciar</a>
                     </div>
                     </div>
                 </div>

@@ -25,9 +25,9 @@ $users = [
 
 // FAQ
 $faqs = [
-  ['q' => 'Como faço para me inscrever?', 'a' => 'Basta clicar em "Assinar" no plano desejado e preencher seus dados.'],
-  ['q' => 'Posso cancelar a qualquer momento?', 'a' => 'Sim, sem multas: cancele sua assinatura a qualquer momento.'],
-  ['q' => 'Quais são os horários das aulas?', 'a' => 'Oferecemos aulas desde cedo até noite. Confira o cronograma na página Planos.'],
+  ['q' => 'Como faço para me inscrever?', 'a' => 'Basta clicar no "Planos" desejado e preencher seus dados.'],
+  ['q' => 'Contato dos Proficionais responsaveis?', 'a' => 'Em contatos, você vai encontrar os donos da Academia.'],
+  ['q' => 'Quais são os horários das aulas?', 'a' => 'Oferecemos aulas desde cedo das 05:00 até noite 23:00S.'],
 ];
 
 include 'includes/header.php';
@@ -74,9 +74,9 @@ include 'includes/header.php';
           <img src="assets/image.png" alt="Equipe" class="img-fluid rounded shadow">
         </div>
         <div class="col-md-4 text-center text-md-left">
-          <h2 class="font-weight-bold text-warning">Foco na Bomber Gym!</h2>
+          <h2 class="font-weight-bold text-danger">NO PAIN - NO GAIN!</h2>
           <ul class="mt-4">
-            ✔️ O foco, e desenvolvimento, é oque mais procuramos nos nossos atletas, assim podendo mostrar ao mundo quem somos e nosssa capacidade!</li>
+            ESSE É O NOSSO LEMA, SUPORTE-O!</li>
           </ul>
         </div>
         <div class="col-md-4 text-center">

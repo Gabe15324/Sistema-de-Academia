@@ -6,21 +6,9 @@ $planos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Depoimentos
 $users = [
-  [
-    'name' => 'Cbum',
-    'img' => 'cbum.png',
-    'text' => 'Excelente academia! Os treinos são personalizados e os professores são muito atenciosos.'
-  ],
-  [
-    'name' => 'Ramon',
-    'img' => 'ramon.png',
-    'text' => 'Ambiente limpo, organizado e com equipamentos modernos. Recomendo demais!'
-  ],
-  [
-    'name' => 'Urs',
-    'img' => 'urs.png',
-    'text' => 'Consegui atingir meus objetivos em poucos meses. A equipe está de parabéns!'
-  ]
+  ['name' => 'Cbum', 'img' => 'cbum.png', 'text' => 'Excelente academia! Os treinos são personalizados e os professores são muito atenciosos.'],
+  ['name' => 'Ramon', 'img' => 'ramon.png', 'text' => 'Ambiente limpo, organizado e com equipamentos modernos. Recomendo demais!'],
+  ['name' => 'Urs', 'img' => 'urs.png', 'text' => 'Consegui atingir meus objetivos em poucos meses. A equipe está de parabéns!']
 ];
 
 // FAQ
@@ -30,11 +18,32 @@ $faqs = [
   ['q' => 'Quais são os horários das aulas?', 'a' => 'Oferecemos aulas desde cedo das 05:00 até noite 23:00S.'],
 ];
 
+// 👇 Controle de cookie de consentimento
+if (isset($_GET['cookie'])) {
+    if ($_GET['cookie'] === 'aceitar') {
+        setcookie('visitou_site', 'sim', time() + (365 * 24 * 60 * 60), "/");
+    } elseif ($_GET['cookie'] === 'recusar') {
+        setcookie('visitou_site', 'nao', time() + (365 * 24 * 60 * 60), "/");
+    }
+    header("Location: index.php");
+    exit;
+}
+
 include 'includes/header.php';
 ?>
 
 <main class="bg-dark text-light">
 
+
+  <!-- BANNER DE COOKIES EM PHP -->
+  <?php if (!isset($_COOKIE['visitou_site'])): ?>
+    <div style="position:fixed; bottom:0; width:100%; background-color:#343a40; color:white; padding:15px; z-index:9999;" class="text-center">
+      <p class="mb-2">🍪 Este site usa cookies para melhorar sua experiência.</p>
+      <a href="?cookie=aceitar" class="btn btn-success btn-sm">Aceitar</a>
+      <a href="?cookie=recusar" class="btn btn-danger btn-sm">Recusar</a>
+    </div>
+  <?php endif; ?>
+  
   <section class="d-flex align-items-center justify-content-center text-center vh-100" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('assets/hero.png') center/cover;">
     <div class="px-3">
       <h1 class="display-4 font-weight-bold">Bem-vindo à <span class="text-warning">Bomber Gym</span></h1>
@@ -76,7 +85,7 @@ include 'includes/header.php';
         <div class="col-md-4 text-center text-md-left">
           <h2 class="font-weight-bold text-danger">NO PAIN - NO GAIN!</h2>
           <ul class="mt-4">
-            ESSE É O NOSSO LEMA, SUPORTE-O!</li>
+            <li>ESSE É O NOSSO LEMA, SUPORTE-O!</li>
           </ul>
         </div>
         <div class="col-md-4 text-center">
@@ -139,5 +148,42 @@ include 'includes/header.php';
   </section>
 
 </main>
+
+<?php if (!isset($_COOKIE['visitou_site'])): ?>
+  <div id="cookie-banner" class="position-fixed w-100 bg-dark text-light p-3" style="bottom: 0; z-index: 9999;">
+    <div class="container d-flex justify-content-between align-items-center flex-wrap">
+      <span>🍪 Utilizamos cookies para melhorar sua experiência. Ao aceitar, você concorda com nossa <a href="#" class="text-warning">política de privacidade</a>.</span>
+      <div class="mt-2 mt-md-0">
+        <button id="aceitar-cookies" class="btn btn-sm btn-warning">Aceitar</button>
+        <button id="recusar-cookies" class="btn btn-sm btn-outline-light">Recusar</button>
+      </div>
+    </div>
+  </div>
+<?php endif; ?>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const aceitar = document.getElementById('aceitar-cookies');
+    const recusar = document.getElementById('recusar-cookies');
+
+    function esconderBanner() {
+      const banner = document.getElementById('cookie-banner');
+      if (banner) banner.style.display = 'none';
+    }
+
+    if (aceitar) {
+      aceitar.addEventListener('click', function () {
+        document.cookie = "visitou_site=sim; path=/; max-age=" + (30 * 24 * 60 * 60);
+        esconderBanner();
+      });
+    }
+
+    if (recusar) {
+      recusar.addEventListener('click', function () {
+        esconderBanner();
+      });
+    }
+  });
+</script>
 
 <?php include 'includes/footer.php'; ?>

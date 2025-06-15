@@ -2,8 +2,14 @@
 session_start(); 
 include 'includes/header.php'; 
 
-$plano_id = $_GET['plano_id'] ?? null; // Pega o plano vindo pela URL
+$plano_id = $_GET['plano_id'] ?? null; 
+
+if (!$plano_id) {
+    header("Location: Planos.php");
+    exit;
+}
 ?>
+
 
 <body class="bg-dark text-white">
 

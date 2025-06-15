@@ -16,7 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $pdo->prepare("DELETE FROM usuarios WHERE id = ?");
         $stmt->execute([$id]);
 
-        // Finaliza sessão e redireciona
         session_destroy();
         header("Location: ../../login.php");
         exit;

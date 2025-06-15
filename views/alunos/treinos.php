@@ -33,9 +33,11 @@ $treinos = $pdo->query("SELECT t.*, u.nome AS aluno_nome FROM treinos t JOIN usu
 <div class="container mt-5">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h4 class="text-primary mb-0">📋 Lista de Treinos</h4>
-        <a href="criar_treino.php" class="btn btn-success">➕ Criar Novo Treino</a>
+        <div>
+            <a href="criar_treino.php" class="btn btn-success mr-2">➕ Criar Novo Treino</a>
+            <a href="../../dashboard.php" class="btn btn-secondary">🔙 Voltar</a>
+        </div>
     </div>
-
     <div class="card">
         <div class="card-body p-0">
             <table class="table table-hover table-striped mb-0">

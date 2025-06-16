@@ -2,7 +2,6 @@
 session_start();
 require_once '../../config/db.php';
 
-// Verifica se o usuário está logado e é aluno
 if (!isset($_SESSION['usuario_id']) || $_SESSION['usuario_tipo'] !== 'aluno') {
     header("Location: ../../login.php");
     exit;

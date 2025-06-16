@@ -4,21 +4,21 @@ $conn = Database::conectar();
 $stmt = $conn->query("SELECT * FROM planos ORDER BY valor ASC");
 $planos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Depoimentos
+
 $users = [
   ['name' => 'Cbum', 'img' => 'cbum.png', 'text' => 'Excelente academia! Os treinos são personalizados e os professores são muito atenciosos.'],
   ['name' => 'Ramon', 'img' => 'ramon.png', 'text' => 'Ambiente limpo, organizado e com equipamentos modernos. Recomendo demais!'],
   ['name' => 'Urs', 'img' => 'urs.png', 'text' => 'Consegui atingir meus objetivos em poucos meses. A equipe está de parabéns!']
 ];
 
-// FAQ
+
 $faqs = [
   ['q' => 'Como faço para me inscrever?', 'a' => 'Basta clicar no "Planos" desejado e preencher seus dados.'],
   ['q' => 'Contato dos Proficionais responsaveis?', 'a' => 'Em contatos, você vai encontrar os donos da Academia.'],
   ['q' => 'Quais são os horários das aulas?', 'a' => 'Oferecemos aulas desde cedo das 05:00 até noite 23:00S.'],
 ];
 
-// 👇 Controle de cookie de consentimento
+
 if (isset($_GET['cookie'])) {
     if ($_GET['cookie'] === 'aceitar') {
         setcookie('visitou_site', 'sim', time() + (365 * 24 * 60 * 60), "/");
@@ -35,7 +35,7 @@ include 'includes/header.php';
 <main class="bg-dark text-light">
 
 
-  <!-- BANNER DE COOKIES EM PHP -->
+
   <?php if (!isset($_COOKIE['visitou_site'])): ?>
     <div style="position:fixed; bottom:0; width:100%; background-color:#343a40; color:white; padding:15px; z-index:9999;" class="text-center">
       <p class="mb-2">🍪 Este site usa cookies para melhorar sua experiência.</p>

@@ -1,13 +1,12 @@
 <?php
 session_start();
 
-// Verifica se o usuário está logado
 if (!isset($_SESSION['usuario_tipo'])) {
     header("Location: ../../login.php");
     exit;
 }
 
-// Permite apenas acesso de administradores
+
 if ($_SESSION['usuario_tipo'] !== 'admin') {
     header("Location: ../../dashboard.php");
     exit;

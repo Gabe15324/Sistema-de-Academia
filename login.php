@@ -9,7 +9,7 @@ if (isset($_SESSION['usuario_id'])) {
 }
 ?>
 
-<!-- Seção de Login -->
+
 <div class="container pt-5 pb-5">
   <div class="row justify-content-center">
     <div class="col-md-6 col-lg-5">

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Redireciona se não estiver logado
+
 if (!isset($_SESSION['usuario_tipo'])) {
     header("Location: ../../login.php");
     exit;
@@ -17,7 +17,7 @@ $conn = Database::conectar();
     <meta charset="UTF-8">
     <title>Dashboard - Academia</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Ícones -->
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>

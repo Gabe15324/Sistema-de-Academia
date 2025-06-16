@@ -15,7 +15,7 @@ if (!isset($_GET['id'])) {
 
 $treino_id = $_GET['id'];
 
-// Buscar treino existente
+
 $stmt = $pdo->prepare("SELECT * FROM treinos WHERE id = ?");
 $stmt->execute([$treino_id]);
 $treino = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -24,7 +24,7 @@ if (!$treino) {
     die("Treino não encontrado.");
 }
 
-// Atualizar treino
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $nome = $_POST['nome'];
     $descricao = $_POST['descricao'];

@@ -16,7 +16,6 @@ $treino_id = $_GET['id'];
 try {
     $pdo = Database::conectar();
 
-    // Excluir o treino
     $stmt = $pdo->prepare("DELETE FROM treinos WHERE id = ?");
     $stmt->execute([$treino_id]);
 

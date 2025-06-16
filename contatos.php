@@ -2,7 +2,7 @@
 include 'includes/header.php';
 ?>
 
-<!-- Font Awesome para ícones -->
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 <section id="contato" class="py-5 bg-light mt-5">

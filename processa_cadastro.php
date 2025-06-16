@@ -24,7 +24,7 @@ if ($senha !== $confirmar_senha) {
 try {
     $pdo = Database::conectar();
 
-    // Verifica duplicidade de email
+
     $stmt = $pdo->prepare("SELECT id FROM usuarios WHERE email = ?");
     $stmt->execute([$email]);
     if ($stmt->fetch()) {

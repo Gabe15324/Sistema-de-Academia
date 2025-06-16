@@ -8,7 +8,6 @@ $planos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 include 'includes/header.php';
 ?>
 
-<!-- AOS Animate On Scroll -->
 <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
 <section id="planos" class="py-5 bg-dark text-light">
@@ -41,7 +40,6 @@ include 'includes/header.php';
   </div>
 </section>
 
-<!-- AOS Script -->
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>
   AOS.init({

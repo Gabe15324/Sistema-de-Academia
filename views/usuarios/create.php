@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $tipo = $_POST['tipo'];
     $telefone = $_POST['telefone'];
     $data_nascimento = $_POST['data_nascimento'];
-    $genero = $_POST['genero'] ?? null;  // campo opcional
+    $genero = $_POST['genero'] ?? null; 
 
     $stmt = $conn->prepare("
         INSERT INTO usuarios (nome, email, senha, tipo, telefone, data_nascimento, genero) 
